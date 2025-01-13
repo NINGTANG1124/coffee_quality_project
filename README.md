@@ -13,31 +13,35 @@
 Data description: This dataset contains coffee cup measurement data from a number of countries, including information on ratings, country origin, and more.
 
 ## 功能实现和步骤说明 Functional implementation and step-by-step description
-### Step 1: Data reading and initial check
-Using pandas to read CSV data files
+### Step 1: 数据读取和初始检查 Data reading and initial check
+1. Using pandas to read CSV data files
 #### 示例代码
-Checking data types, missing values and duplicate values
+2. Checking data types, missing values and duplicate values
 #### 示例代码
 
 ### Step 2: Data cleansing
-Removing outliers
+1. 删除异常值Removing outliers
 #### 示例代码
-保证数据质量，准备进行分析
+2。 保证数据质量，准备进行分析
 #### 示例代码
 
 ## Step 3: Statistical analyses
-描述数据分布，包括均值、标准差等统计信息
-按国家分组计算总评分的平均值
+1. 描述数据分布，包括均值、标准差等统计信息
+2. 按国家分组计算总评分的平均值
 #### 示例代码
 
 ## Step 4 : Data visualisation
-评分分布直方图-使用 seaborn 和 matplotlib 绘制直方图，查看评分的总体分布
+1. 评分分布直方图-使用 seaborn 和 matplotlib 绘制直方图，查看评分的总体分布
 #### 示例代码
-按国家评分的柱状图：
-展示不同国家的平均评分
+2. 按国家评分的柱状图：展示不同国家的平均评分
 #### 示例代码
 
 ## Step 5 :  Avanced Visualization
+1. 相关性分析：生成咖啡评分指标之间的相关矩阵，帮助发现哪些变量对总评分的影响最大。
+### 示例代码：相关矩阵热力图
+2. 模式分析：使用国家和评分的数据透视表生成热力图，观察各国家的评分分布模式。
+### 示例代码：国家和评分的交叉分析
+源代码需要补充
 
 ## Usage
 1. Clone the project: ’git clone https://github.com/coffee_quality_project’
