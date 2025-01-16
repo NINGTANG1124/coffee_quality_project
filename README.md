@@ -1,16 +1,30 @@
 ![Coffee](https://img.freepik.com/premium-photo/white-coffee-cup-roasted-coffee-beans-around_35570-794.jpg)
 # Coffee Quality Analysis
-## Description of the project
-This project uses the coffee rating dataset provided by Tidy Tuesday to explore the impact of different species of coffee, different altitudes, different countries, flavour and acidity on ratings for visual presentation.
+## Project Introduction
+This project uses the coffee rating dataset provided by Tidy Tuesday，processed a dataset containing 43 columns and 1,339 rows to explore the impact of different species of coffee, different altitudes, different countries, flavour and acidity on ratings for visual presentation.
    
-## Data sources
-The data used in this project comes from Tidy Tuesday's 2020-07-07 coffee rating dataset https://github.com/rfordatascience/tidytuesday/tree/main/data/2020/2020-07-07
-The original source of the data is the Coffee Quality Database.
+## Dataset Introduction
+- data source: Tidy Tuesday's 2020-07-07 coffee rating dataset https://github.com/rfordatascience/tidytuesday/tree/main/data/2020/2020-07-07
+- data file: `coffee_ratings.csv`
+- data scale:
+  - row: 1339
+  - column: 43
+- key column:
+  - `total_cup_points`
+  - `species`
+  - `altitude_mean_meters`
+  - `country_of_origin`
+  - `flavor`
+  - `acidity
 
-### Data description-----存疑
-- Data file: ’coffee_ratings.csv’
-- Data source: ’/content/drive/MyDrive/coffee_quality_project/’
-
+## Environmental dependence
+- pandas
+- numpy
+- matplotlib
+- seaborn
+- scipy
+- plotly
+  
 ## Functional realisation and steps description
 ### Step 1.Data reading
 1. Using pandas to read CSV data files
@@ -46,11 +60,6 @@ data = data[data['altitude_mean_meters'] > 0]
 # Delete irrelevant columns
 columns_to_remove = ['lot_number', 'ico_number', 'certification_body', 'expiration']
 data = data.drop(columns=columns_to_remove, errors='ignore')
-
-# Check cleaned data
-print("cleaned data：")
-print(data.info())
-print(data.describe())
 ```
 
 ### Step 3 : Data visualisation
@@ -58,58 +67,22 @@ print(data.describe())
 #### 1. Plotting histograms of rating distribution
 Plotting a histogram of the distribution of ratings can help to understand the spread of ratings
 ```python
-import seaborn as sns
-import matplotlib.pyplot as plt
-
-data = cleaned_data
-
-# Histogram of rating distribution
-plt.figure(figsize=(10, 6))
 sns.histplot(data['total_cup_points'], bins=50, kde=True, color='blue')
-plt.title("Rating Distribution")
-plt.xlabel("Total Cup Points")
-plt.ylabel("Sample Count")
-plt.xlim(0, 100)
-plt.grid(axis='y', linestyle='--', alpha=0.7)
-plt.show()
 ```
 
 #### 2. Distribution of ratings by species
 There are two main species of coffee beans : Arabica, Robusta
 ```python
-plt.figure(figsize=(12, 8))
-for species in species_list:
-    subset = cleaned_data[cleaned_data['species'] == species]
     sns.histplot(subset['total_cup_points'], kde=True, label=species, bins=30, alpha=0.5)
-
-plt.title('Total Cup Points Distribution by Species', fontsize=16)
-plt.xlabel('Total Cup Points', fontsize=12)
-plt.ylabel('Sample Count', fontsize=12)
-plt.legend(title='Species')
-plt.grid(axis='y', linestyle='--', alpha=0.7)
-plt.show()
 ```
 
 #### 3. Scatterplot of ratings and altitude
 Scatter plots were drawn to help show the correlation between coffee ratings and altitude, and quantified by linear plots
 ```python
-# 1. Scatterplot of ratings and altitude
-plt.figure(figsize=(10, 6))
+# Scatterplot
 sns.scatterplot(x='altitude_mean_meters', y='total_cup_points', data=data, alpha=0.6, color='blue')
-plt.title('Scatter Plot: Total Cup Points vs Altitude', fontsize=16)
-plt.xlabel('Mean Altitude (meters)', fontsize=12)
-plt.ylabel('Total Cup Points', fontsize=12)
-plt.grid()
-plt.show()
-
-# 2. Regression analysis
-plt.figure(figsize=(10, 6))
+# Regression analysis
 sns.regplot(x='altitude_mean_meters', y='total_cup_points', data=data, scatter_kws={'alpha': 0.5}, line_kws={'color': 'red'})
-plt.title('Regression: Total Cup Points vs Altitude', fontsize=16)
-plt.xlabel('Mean Altitude (meters)', fontsize=12)
-plt.ylabel('Total Cup Points', fontsize=12)
-plt.grid()
-plt.show()
 ```
 
 #### 4. Interactive map
@@ -125,24 +98,27 @@ fig = px.choropleth(
     color_continuous_scale="YlGnBu",
     labels={'avg_rating': 'Average Rating'}
 )
-
-fig.show()
 ```
 #### 5. Heat mapping of flavour and acidity
+
 ```python
-plt.figure(figsize=(8, 6))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
-plt.title('Correlation Heatmap: Ratings, Flavor, and Acidity', fontsize=16)
-plt.show()
 ```
 
 ## Usage
-1. Clone the project: ’git clone https://github.com/coffee_quality_project’
-2. Install dependencies: ’pip install -r requirements.txt’
-3. Run the code: 'data_analysis.py'
+1. Run:
+   ``bash
+   python coffee_rating_project_analysis.py
+2. Output:
+   - histograms of rating distribution
+   ![评分分布](example_rating_distribution.png)
+   - Distribution of ratings by species
+   
+   - Scatterplot of ratings and altitude
+  
 
-## Environment dependencies
-- pandas
-- matplotlib
-- seaborn
-- plotly.express
+   - Interactive map
+
+   - Heat mapping of flavour and acidity
+   
+
