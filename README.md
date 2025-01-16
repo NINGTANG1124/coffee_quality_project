@@ -7,7 +7,7 @@ This project uses the coffee rating dataset provided by Tidy Tuesday to explore 
 The data used in this project comes from Tidy Tuesday's 2020-07-07 coffee rating dataset https://github.com/rfordatascience/tidytuesday/tree/main/data/2020/2020-07-07
 The original source of the data is the Coffee Quality Database.
 
-### Data description
+### Data description-----存疑
 - Data file: ’coffee_ratings.csv’
 - Data source: ’/content/drive/MyDrive/coffee_quality_project/’
 
@@ -19,6 +19,8 @@ The original source of the data is the Coffee Quality Database.
 ’print(data.info())’
 
 ### Step 2. Data cleaning
+Raw data often contains missing values, duplicate values, inconsistent formatting or incorrect data, in order to safeguard the quality of the data and enhance the reliability of the results, it is necessary to first clean the overall data
+
 ```python
 # Check for missing values
 print("Missing value statistics：")
@@ -52,7 +54,9 @@ print(data.describe())
 ```
 
 ### Step 3 : Data visualisation
+
 #### 1. Plotting histograms of rating distribution
+Plotting a histogram of the distribution of ratings can help to understand the spread of ratings
 ```python
 import seaborn as sns
 import matplotlib.pyplot as plt
@@ -69,6 +73,7 @@ plt.xlim(0, 100)
 plt.grid(axis='y', linestyle='--', alpha=0.7)
 plt.show()
 ```
+
 #### 2. Distribution of ratings by species
 There are two main species of coffee beans : Arabica, Robusta
 ```python
@@ -86,7 +91,7 @@ plt.show()
 ```
 
 #### 3. Scatterplot of ratings and altitude
-加入描述为什么要两个图
+Scatter plots were drawn to help show the correlation between coffee ratings and altitude, and quantified by linear plots
 ```python
 # 1. Scatterplot of ratings and altitude
 plt.figure(figsize=(10, 6))
@@ -108,7 +113,8 @@ plt.show()
 ```
 
 #### 4. Interactive map
-要先导入plotly.express功能，然后要对国家名称进行统一，不然会怎么样
+-plotly.express
+Need to standardise the country names first
 ```python
 fig = px.choropleth(
     country_ratings,
@@ -123,7 +129,6 @@ fig = px.choropleth(
 fig.show()
 ```
 #### 5. Heat mapping of flavour and acidity
-为什么要研究这个，为什么要先计算相关矩阵
 ```python
 plt.figure(figsize=(8, 6))
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f")
