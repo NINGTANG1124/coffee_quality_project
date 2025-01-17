@@ -13,7 +13,7 @@ import pandas as pd
 
 # Rread file
 #data = pd.read_csv('/content/drive/MyDrive/coffee_quality_project/coffee_ratings.csv')
-data = pd.read_csv('coffee_quality_project/data/coffee_ratings.csv')
+data = pd.read_csv('data/coffee_ratings.csv')
 
 # Check for missing values
 print("Missing value statistics：")
