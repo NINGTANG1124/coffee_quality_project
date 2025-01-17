@@ -7,18 +7,19 @@ Original file is located at
     https://colab.research.google.com/drive/1GztWwqy7UXhuRoPMeDiZ5kCMYC6FrNnb
 """
 
-from google.colab import drive; drive.mount('/content/drive')
+#from google.colab import drive; drive.mount('/content/drive')
 
 import pandas as pd
 
 # Rread file
-data = pd.read_csv('/content/drive/MyDrive/coffee_quality_project/coffee_ratings.csv') #提交作业时候记得更改
+#data = pd.read_csv('/content/drive/MyDrive/coffee_quality_project/coffee_ratings.csv')
+data = pd.read_csv('coffee_quality_project/data/coffee_ratings.csv')
 
 # Check for missing values
 print("Missing value statistics：")
 print(data.isnull().sum())
 
-# Delete columns with excessive missing values（>50%）
+# Delete columns with excessive missing values（>50%)
 missing_percentage = data.isnull().mean() * 100
 columns_to_drop = missing_percentage[missing_percentage > 50].index
 data = data.drop(columns=columns_to_drop)
